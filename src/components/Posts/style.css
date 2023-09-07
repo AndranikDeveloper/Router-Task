@@ -1,0 +1,26 @@
+.post {
+    border: 1px solid transparent;
+    border-radius: 5px;
+    background-color: yellowgreen;
+    padding: 15px;
+    width: 100px;   
+    color: white;
+    margin-top: 10px;
+    text-overflow: ellipsis;
+    overflow: hidden;   
+    white-space: nowrap;    
+    font-size: 20px;    
+    cursor: pointer;
+}
+
+.post:hover {
+    color: rgb(186, 172, 172);
+}
+
+
+.posts-component {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;    
+}
