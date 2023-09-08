@@ -11,6 +11,12 @@
     white-space: nowrap;    
     font-size: 20px;    
     cursor: pointer;
+    margin: 20px;
+}
+
+.post-id {
+    margin-left: 30px;
+    color: rgb(31, 100, 100);
 }
 
 .post:hover {
@@ -19,8 +25,15 @@
 
 
 .posts-component {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(10, 150px);
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;    
+}
+
+.go-forward {
+    position: fixed;
+    top: 30px;
+    right: 20px;
 }

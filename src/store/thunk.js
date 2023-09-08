@@ -1,10 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getPosts } from "../api/getPosts"
+import axios from "axios";
 
 export const getAllPosts = createAsyncThunk(
     'posts/getAllPosts',
-    async (thunkApi) => {
-        const response = await getPosts();
+    async (params, thunkApi) => {
+        const response = await axios.get(`https://jsonplaceholder.typicode.com/posts`);
         return response.data
     }
 )
