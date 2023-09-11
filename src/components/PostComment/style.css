@@ -1,0 +1,93 @@
+.comments {
+  /* justify-content: center;
+    align-items: center; */
+  width: 100%;
+  height: 100%;
+  margin-top: 20px;
+}
+
+.column {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 6px;
+  padding: 10px;
+  border: 1px solid transparent;
+  background-color: rgb(82, 79, 79);
+  row-gap: 20px;
+  color: white;
+}
+
+.body {
+  border: 1px solid transparent;
+  background-color: green;
+  margin: 10px;
+  color: white;
+  border-radius: 10px;
+  padding: 10px;
+  max-width: 350px;
+  max-height: auto;
+}
+
+.comment-content {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+}
+
+.common {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.go-back {
+  position: absolute;
+  top: 20px;
+  left: 50px;
+  padding: 20px;
+}
+
+.common-input {
+  width: 600px;
+  background-color: #fff;
+  border-radius: 7px;
+}
+
+.update-btn {
+  height: 50px;
+  margin-left: 20px;
+}
+.name {
+  font-size: 16px;
+  width: 100%;
+}
+
+.email {
+  width: 100%;
+}
+
+.email-icon {
+  margin-left: 15px;
+}
+
+.email div:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* --------------MODAL---------------------------------------------------------------------------------------------------------------------------------------------- */
+
+.open-modal {
+  margin: 40px;
+  padding: 10px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background-color: rgb(158, 214, 158);
+  color: white;
+  cursor: pointer;
+}

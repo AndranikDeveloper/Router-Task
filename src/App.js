@@ -5,11 +5,10 @@ import Post from './components/Post/Post';
 
 function App() {
   return (
-    <div className="App">
-      
+    <div className='App'>
       <Routes>
-        <Route path='/' element={<AllPosts />}/>
-        <Route path='/posts/:id' element={<Post />}/>
+        <Route exact path='/' element={<AllPosts />} />
+        <Route path='/posts/:id' element={<Post />} />
       </Routes>
     </div>
   );

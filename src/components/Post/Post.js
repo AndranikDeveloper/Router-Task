@@ -1,10 +1,10 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import PostComment from "../Post-Comment/PostComment";
-import "../Post-Comment/style.css";
-import { Button, TextField } from "@mui/material";
-import { useRef } from "react";
+import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import PostComment from '../PostComment/PostComment';
+import '../PostComment/style.css';
+import { Button } from '@mui/material';
+import { getTitleId } from './PostApi';
+import PostForm from './PostForm';
 
 const Post = () => {
   const [postValue, setPostValue] = useState([]);
@@ -13,59 +13,24 @@ const Post = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const getTitleId = async () => {
-      try {
-        const response = await axios.get(
-          `https://jsonplaceholder.typicode.com/posts/${id}`
-        );
-        setPostValue(response.data);
-      } catch (e) {
-        console.log(e);
-      }
-    };
-    getTitleId();
+    getTitleId({ id, setPostValue });
   }, [id]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    axios
-    .patch(`https://jsonplaceholder.typicode.com/posts/${id}`, postValue)
-    .then(console.log )
-    .catch(err => console.log(err))
-
-  };
-  console.log(postValue.title);
   return (
     <div>
-      <div className="go-back">
-        <Button onClick={() => navigate(-1)} variant="contained">
+      <div className='go-back'>
+        <Button onClick={() => navigate(-1)} variant='contained'>
           Go Back
         </Button>
       </div>
 
-      <div className="common">
+      <div className='common'>
         <div>
-          <h4>Title Input: </h4>
+          <h4 style={{ color: 'white' }}>Title Input: </h4>
         </div>
 
-        <div className="edit-input">
-
-          <form onSubmit={handleSubmit}>
-
-            <TextField
-              className="common-input"
-              placeholder="Post Title"
-              value={postValue.title}
-              onChange={(e) =>
-                setPostValue({ ...postValue, title: e.target.value })
-              }
-            />
-
-            <button variant="contained">Save Changes</button>
-
-          </form>
-        
+        <div className='edit-input'>
+          <PostForm id={id} setPostValue={setPostValue} postValue={postValue} />
         </div>
         <PostComment id={id} />
       </div>
