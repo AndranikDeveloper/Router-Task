@@ -1,39 +1,72 @@
 .post {
     border: 1px solid transparent;
     border-radius: 5px;
-    background-color: yellowgreen;
-    padding: 15px;
-    width: 100px;   
+    background-color: gray;
+    padding: 20px;
+    width: 400px;
+    height: 200px;   
     color: white;
     margin-top: 10px;
-    text-overflow: ellipsis;
     overflow: hidden;   
-    white-space: nowrap;    
-    font-size: 20px;    
+    font-size: 17px;    
     cursor: pointer;
     margin: 20px;
+    transition: all 0.2s ease;
+}
+
+.post:hover {
+    transform: scale(1.1);
+}
+
+.post-title {
+    margin-top: 30px;
+    border: 0.1px solid rgb(199, 193, 193);
+    width: 180px;
+    padding: 5px;
+    overflow: hidden;
+    border-radius: 4px;
+    text-overflow: ellipsis;
+    white-space: nowrap; 
+    transition: all 0.3s ease
 }
 
 .post-id {
     margin-left: 30px;
-    color: rgb(31, 100, 100);
+    color: white;
 }
 
-.post:hover {
-    color: rgb(186, 172, 172);
+.post-title:hover { 
+    color: rgb(196, 195, 195);
 }
 
+.post-image {
+    width: 50px;
+    height: 50px;
+}
 
 .posts-component {
     display: grid;
-    grid-template-columns: repeat(10, 150px);
+    grid-template-columns: repeat(3, 400px);
+    gap: 100px;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;    
 }
 
-.go-forward {
-    position: fixed;
-    top: 30px;
-    right: 20px;
+.post-name {
+    font-size: 13px;
+    color: rgb(200, 187, 187);
+    margin-top: 10px;
+}
+
+.arrow-block {
+    /* position: absolute; */
+    top: 20px;
+    right: 10px;
+}
+
+.arrow {
+    position: absolute;
+    top: 20px;
+    right: 15px;
 }

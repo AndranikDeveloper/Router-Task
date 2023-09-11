@@ -1,14 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "../Posts/style.css";
 import { useNavigate } from "react-router-dom";
 import { getAllPosts } from "../../store/thunk";
-import { Button } from "@mui/material";
+import { AiOutlineUser } from "react-icons/ai";
+import { FaLongArrowAltRight } from "react-icons/fa";
 
 const AllPosts = () => {
   const { posts, isLoading } = useSelector((state) => state.response);
-
-  const [isVisited, setIsVisited] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -17,30 +16,25 @@ const AllPosts = () => {
     dispatch(getAllPosts());
   }, [dispatch]);
 
-  const navigateToForward = () => {
-    setIsVisited(true);
-    if (isVisited) {
-      navigate(+1);
-    }
-  };
-
   return (
     <div className="posts-component">
       {isLoading && <h1>Loading...</h1>}
 
-      <div className="go-forward">
-        {isVisited && (
-          <Button onClick={() => navigate(1)} className="go" variant="contained">
-            Go Forward
-          </Button>
-        )}
-      </div>
-
       {posts.map((post) => (
         <div>
           <div className="post-id">The Post Id: {post.id}</div>
-          <div onClick={navigateToForward} className="post" key={post.id}>
-            {post.title}
+          <div onClick={() => navigate(`/posts/${post.id}`)} className="post" key={post.id}>
+
+            <div className="post-img">
+              <AiOutlineUser className="post-image" />
+            </div>
+
+            <div className="post-name">Name: </div>
+            <div className="post-title">{post.title}</div>
+
+            <span className="arrow-block">
+              <FaLongArrowAltRight className="arrow"/>
+            </span>
           </div>
         </div>
       ))}

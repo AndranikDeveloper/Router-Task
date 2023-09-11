@@ -8,17 +8,16 @@ import { useRef } from "react";
 
 const Post = () => {
   const [postValue, setPostValue] = useState([]);
-  const [edit, setEdit] = useState(false)
 
   const { id } = useParams();
   const navigate = useNavigate();
-  const inputRef = useRef(null);
-
 
   useEffect(() => {
     const getTitleId = async () => {
       try {
-        const response = await axios.get(`https://jsonplaceholder.typicode.com/posts/${id}`);
+        const response = await axios.get(
+          `https://jsonplaceholder.typicode.com/posts/${id}`
+        );
         setPostValue(response.data);
       } catch (e) {
         console.log(e);
@@ -27,15 +26,16 @@ const Post = () => {
     getTitleId();
   }, [id]);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-  const handleEdit = () => {
-    setEdit(!edit)
-  }
+    axios
+    .patch(`https://jsonplaceholder.typicode.com/posts/${id}`, postValue)
+    .then(console.log )
+    .catch(err => console.log(err))
 
-  const handleSave = () => {
-    setEdit(!edit)
-  }
-
+  };
+  console.log(postValue.title);
   return (
     <div>
       <div className="go-back">
@@ -50,18 +50,24 @@ const Post = () => {
         </div>
 
         <div className="edit-input">
-            <TextField className="common-input" placeholder="Post Title" value={postValue.title} inputRef={input => edit && input?.focus() } />
-            {/* <input ref={inputRef} type="text"/> */}
 
-            {
-                edit 
-                ? <Button onClick={handleSave} className="save-btn" variant="contained">Save</Button> 
-                : <Button className="edit-btn" variant="contained" onClick={handleEdit}>Edit</Button>
-            }
-           
+          <form onSubmit={handleSubmit}>
+
+            <TextField
+              className="common-input"
+              placeholder="Post Title"
+              value={postValue.title}
+              onChange={(e) =>
+                setPostValue({ ...postValue, title: e.target.value })
+              }
+            />
+
+            <button variant="contained">Save Changes</button>
+
+          </form>
+        
         </div>
-
-        <PostComment id={id} /> 
+        <PostComment id={id} />
       </div>
     </div>
   );
