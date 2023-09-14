@@ -4,6 +4,7 @@ import { getAllPosts } from './../thunk';
 
 const initialState = {
     posts: [],
+    matchedPosts: [],
     isLoading: false,
     error: null
 }
@@ -11,8 +12,12 @@ const initialState = {
 const postsSlice = createSlice({
     name: 'posts',
     initialState,
-    reducers: {},
-    extraReducers: builder  => {
+    reducers: {
+        setMatchedPosts(state, action) {
+            state.matchedPosts = action.payload
+        }
+    },
+    extraReducers: builder => {
         builder.addCase(getAllPosts.pending, (state) => {
             state.isLoading = true
         })
@@ -30,6 +35,6 @@ const postsSlice = createSlice({
 
 
 
-export const {setPosts, setIsLoading} = postsSlice.actions
+export const { setMatchedPosts } = postsSlice.actions
 
 export default postsSlice.reducer

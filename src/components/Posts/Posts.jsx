@@ -5,9 +5,11 @@ import { useNavigate } from 'react-router-dom';
 import { getAllPosts } from '../../store/thunk';
 import { AiOutlineUser } from 'react-icons/ai';
 import { FaLongArrowAltRight } from 'react-icons/fa';
+import Search from '../Search/Search';
+import Arrow from '../Arrow/Arrow';
 
 const AllPosts = () => {
-  const { posts, isLoading } = useSelector((state) => state.response);
+  const { matchedPosts, isLoading } = useSelector((state) => state.response);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -16,31 +18,42 @@ const AllPosts = () => {
     dispatch(getAllPosts());
   }, [dispatch]);
 
+
   return (
-    <div className='posts-component'>
-      {isLoading && <h1>Loading...</h1>}
+    <div>
+      <div>
+        <Search />
+      </div>
 
-      {posts.map((post) => (
-        <div>
-          <div className='post-id'>The Post Id: {post.id}</div>
-          <div
-            onClick={() => navigate(`/posts/${post.id}`)}
-            className='post'
-            key={post.id}
-          >
-            <div className='post-img'>
-              <AiOutlineUser className='post-image' />
+      <div className='posts-component'>
+        {isLoading && <h1 style={{ color: 'white' }}>Loading...</h1>}
+
+        {matchedPosts.map((post) => (
+          <div>
+            <div className='post-id'>The Post Id: {post.id}</div>
+            <div
+              onClick={() => navigate(`/posts/${post.id}`)}
+              className='post'
+              key={post.id}
+            >
+              <div className='post-img'>
+                <AiOutlineUser className='post-image' />
+              </div>
+
+              <div className='post-name'>Name: </div>
+              <div className='post-title'>{post.title}</div>
+
+              <span className='arrow-block'>
+                <FaLongArrowAltRight className='arrow' />
+              </span>
             </div>
-
-            <div className='post-name'>Name: </div>
-            <div className='post-title'>{post.title}</div>
-
-            <span className='arrow-block'>
-              <FaLongArrowAltRight className='arrow' />
-            </span>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
+
+      <div className='arrow'>
+        <Arrow />
+      </div>
     </div>
   );
 };
